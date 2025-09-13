@@ -12,7 +12,7 @@ public interface DynamicArrayADT<T> {
      * @return Element at specified position
      * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
      */
-    public T getElement(int index);
+    public T get(int index);
 
     /**
      * Replaces element at specified position with user-given element
@@ -20,14 +20,14 @@ public interface DynamicArrayADT<T> {
      * @param newElement New element to be stored at specified position
      * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
      */
-    public void setElement(int index, T newElement);
+    public T set(int index, T newElement);
 
     /**
      * Returns number of elements in array
      * @return Number of elements in array
      * @throws IllegalStateException if array hasn't been correctly initialized
      */
-    public int arraySize();
+    public int size();
 
 }
 

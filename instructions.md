@@ -47,7 +47,9 @@ The methods in this group are for combining and splitting whole arrays.  As desc
 
 * `insert` inserts all the elements of a passed `DynamicArray` at the specified index, returning the result as a new `DynamicArray`.
 
-* `sublist` returns a view (i.e., copy) of the current `DynamicArray` in the range [fromIndex, toIndex).
+* `splitSuffix` returns the elements from a specified index and after as a new `DynamicArray`.
+
+* `splitPrefix` returns the elements before a specified index as a new `DynamicArray`.
 
 * `delete` removes the elements spanning from the first index up to just before the other, i.e., [fromIndex, toIndex), in the current array. It then returns the resulting `DynamicArray`.
 
@@ -60,6 +62,8 @@ Our `DynamicArray` can exceed the standard array in another respect:  we can mak
 * `lowIndex` returns the lowest valid index for this collection.  For traditional Java arrays this will always be 0, but our deluxe array might have a different range of valid values (see below).
 
 * `highIndex` returns the highest valid index for this collection.  For traditional Java arrays this will always be the same as `size - 1`, but our deluxe array might have a different range of valid values (see below).
+
+* `sublist` returns a view (i.e., copy) of the current `DynamicArray` in the range [fromIndex, toIndex).
 
 * `size` returns the number of elements between `lowIndex` and `highIndex`, inclusive.
 
