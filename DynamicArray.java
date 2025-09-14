@@ -1,4 +1,4 @@
-public class DynamicArray<T> implements DynamicArrayADT<T> {
+public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperationsADT<T> {
     
     private T[] array;
     private int size; //number of elements stored in array
@@ -122,5 +122,48 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
         return removedElement;
     }
 
+    
+    /**
+     * 
+     */
+    public DynamicArray<T> append(DynamicArray<T> other) {
+        DynamicArray<T> appendedArray = new DynamicArray<>(this.size + other.size);
+        
+        for (int i = 0; i < this.size; i++) {
+            appendedArray.add(this.get(i));
+        }
 
+        for (int i = this.size; i < appendedArray.size; i++) {
+            appendedArray.add(other.get(i));
+        }
+
+        return appendedArray;
+    }
+
+    /**
+     * 
+     */
+    public DynamicArray<T> insert(int index, DynamicArray<T> other) {
+
+    }
+
+    /**
+     * 
+     */
+    public DynamicArray<T> splitSuffix(int index){
+
+    }
+
+    public DynamicArray<T> splitPrefix(int index){
+
+    }
+
+    public DynamicArray<T> delete(int fromIndex, int toIndex){
+        
+    }
+
+    public DynamicArray<T> extract(int fromIndex, int toIndex){
+
+    }
+}
 }
