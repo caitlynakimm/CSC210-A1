@@ -10,6 +10,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
         this.index = 0;
     }
 
+
+
     /**
      * Replaces element at specified position with user-given element
      * @param index The index of the element to replace
@@ -18,12 +20,12 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
      * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
      */
     public T set(int index, T newElement){
-        T prev_val = array[index];
+        T oldValue = array[index];
         array[index] = newElement;
         if (index < 0 || index >= array.length) {
             throw new IndexOutOfBoundsException("Index chosen is out of bounds. It is either negative or equal to or greater than the array's length. Please enter a valid index.");
         }
-        return prev_val;
+        return oldValue;
     }
 
     /**
