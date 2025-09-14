@@ -5,7 +5,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
     private int index;
 
     /** Constructor takes in an array */
-    public DynamicArray(T[] array) {
+    public DynamicArray(T[] array, int length) {
         this.array = array;
         this.index = 0;
     }
@@ -48,12 +48,20 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
         return array.length;
     }
 
+    /**
+     * Private utility to do array allocation
+     */
+    @SuppressWarnings("unchecked")
+    private T[] allocate(int len) {
+        return (T[]) new Object[len];
+    }
+
     public void add(int index, T value) {
         if (index < 0 || index >= array.length) {
             throw new IndexOutOfBoundsException("Index chosen is out of bounds. Please enter a valid index.");
         }
 
-        T[] newArray = (T[]) new Object[array.length + 1];
+        T[] newArray = allocate(array.length + 1);
 
         for (int i = 0; i < index; i++) {
             newArray[i] = array[i];
@@ -69,7 +77,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
     }
 
     public void add(T value) {
-        T[] newArray = (T[]) new Object[array.length + 1];
+        T[] newArray = allocate(array.length + 1);
         newArray[newArray.length - 1] = value;
         this.array = newArray;
     }
@@ -80,7 +88,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T> {
             throw new IndexOutOfBoundsException("Index chosen is out of bounds. Please enter a valid index.");
         }
 
-        T[] newArray = (T[]) new Object[array.length - 1];
+        T[] newArray = allocate(array.length - 1);
         
         for (int i = 0; i < index; i++) {
             newArray[i] = array[i];
