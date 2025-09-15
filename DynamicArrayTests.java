@@ -244,7 +244,10 @@ public class DynamicArrayTests {
         assertEquals("o", s.add(0, 'o'));
     }
 
-    
+    public void testAddOverload() {
+
+    }
+
 }
 
 
