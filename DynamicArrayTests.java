@@ -158,22 +158,46 @@ public class DynamicArrayTests {
      * when called on invalid indices
      */
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testExtractBounds() {
-        DynamicArray<Character> extractOne = a1.extract(-1, 5);
-        // More bounds that you can check:
+    public void testExtractNegLowIndex() {
         // low index is negative => throws ArrayIndexOutOfBoundsException
-        // high index is greater than array length => throws ArrayIndexOutOfBoundsException
-        DynamicArray<Character> extractTwo = a1.extract(0, 10);
-        // low index is greater than array length => throws ArrayIndexOutOfBoundsException
-        DynamicArray<Character> extractThree = a1.extract(6, 3);
-        // high index is negative => throws ArrayIndexOutOfBoundsException
-        DynamicArray<Character> extractFour = a2.extract(1, -2);
-        // high index is less than low
-        DynamicArray<Character> extractFive = a2.extract(2, 0);
+        a1.extract(-1, 5);
 
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testExtractHighIndexGreaterThanLength() {
+        // high index is greater than array length => throws ArrayIndexOutOfBoundsException
+        a1.extract(2, 10);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testExtractLowIndexGreaterThanLength() {
+        // low index is greater than array length => throws ArrayIndexOutOfBoundsException
+        a1.extract(6, 7);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testExtractNegHighIndex() {
+        // high index is negative => throws ArrayIndexOutOfBoundsException
+        a2.extract(1, -2);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testExtractHighIndexLessThanLow() {
+        // high index is less than low
+        a2.extract(2, 1);
+    }
+
     // ~*~*~*~*~ Get Tests Below ~*~*~*~*~
+    /**
+     * Tests that appending two non-empty arrays results in
+     * a new array containing the elements of both, in order.
+     */
+    @Test
+    public void testGetStandard() {
+        compareToString(a1.append(a2), "abcdefwxyz");
+        compareToString(a2.append(a1), "wxyzabcdef");
+    }
 
     // ~*~*~*~*~ Add Tests Below ~*~*~*~*~
 }
