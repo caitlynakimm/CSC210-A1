@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.beans.Transient;
+
 public class DynamicArrayTests {
 
     private DynamicArray<Character> a1;
@@ -234,20 +236,65 @@ public class DynamicArrayTests {
      */
     @Test
     public void testAddStandard() {
-        assertEquals("oabcdef", a1.add(0, 'o'));
-        assertEquals("abocdef", a1.add(2, 'o'));
-        assertEquals("abcdeof", a1.add(5, 'o'));
+        a1.add(0, 'o');
+        compareToString(a1, "oabcdef");
+        compareSize(a1, "oabcdef");
 
-        assertEquals("owxyz", a2.add(0, 'o'));
-        assertEquals("wxyoz", a2.add(3, 'o'));
+        a1.add(3, 'o');
+        compareToString(a1, "oabocdef");
+        compareSize(a1, "oabocdef");
 
-        assertEquals("o", s.add(0, 'o'));
+        a1.add(7, 'o');
+        compareToString(a1, "oabocdeof");
+        compareSize(a1, "oabocdeof");
     }
 
+    @Test
+    public void testAddtoEmpty() {
+        empty.add(0, 'x');
+        compareToString(empty, "x");
+        compareSize(empty, "x");
+    }
+
+    @Test
+    public void testAddtoOneElementArray() {
+        s.add(0, 'h');
+        compareToString(s, "hs");
+        compareSize(s, "hs");
+
+        s.add(1, 'h');
+        compareToString(s, "hhs");
+        compareSize(s, "hhs");
+
+        s.add(2, 'h');
+        compareToString(s, "hhhs");
+        compareSize(s, "hhhs");
+    }
+
+    @Test
     public void testAddOverload() {
+        a2.add('j');
+        compareToString(a2, "wxyzj");
+        compareSize(a2, "wxyzj");
 
+        empty.add('j');
+        compareToString(empty, "j");
+        compareSize(empty, "j");
+
+        s.add('h');
+        compareToString(s, "sh");
+        compareSize(s, "sh");
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddValueAtNegIndex() {
+        a2.add(-2, 'p');
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddValueAtIndexGreaterThanArraySize() {
+        a2.add(a2.size() + 1, 'y');
+    }
 }
 
 
