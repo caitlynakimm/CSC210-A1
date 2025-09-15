@@ -195,13 +195,40 @@ public class DynamicArrayTests {
      */
     @Test
     public void testGetStandard() {
-        //DynamicArray<Character> result1 = stringToArray(a1.get(3));
+        assertEquals("a", a1.get(0));
+        assertEquals("d", a1.get(3));
+        assertEquals("f", a1.get(5));
 
-        //compareToString(a1.get(3), "d");
-        //compareToString(a2.get(1), "x");
+        assertEquals("w", a2.get(0));
+        assertEquals("z", a2.get(3));
+
+        assertEquals("s", s.get(0));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetEmptyArray() {
+        empty.get(0);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetNegIndex() {
+        // index is negative => throws ArrayIndexOutOfBoundsException
+        a1.get(-1);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetIndexEqualtoArraySize() {
+        // index is equal to array length => throws ArrayIndexOutOfBoundsException
+        a1.get(a1.size());
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetIndexGreaterThanArraySize() {
+        // index is greater than array length => throws ArrayIndexOutOfBoundsException
+        a2.get(a2.size() + 1);
+    }
     // ~*~*~*~*~ Add Tests Below ~*~*~*~*~
+    
 }
 
 
