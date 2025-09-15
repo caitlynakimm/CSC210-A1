@@ -109,7 +109,7 @@ public class DynamicArrayTests {
 
         DynamicArray<Character> result2 = a2.extract(0, 2);
         compareToString(result2, "wx");
-        compareSize(result2, "wx");;
+        compareSize(result2, "wx");
     }
 
     /**
@@ -190,13 +190,15 @@ public class DynamicArrayTests {
 
     // ~*~*~*~*~ Get Tests Below ~*~*~*~*~
     /**
-     * Tests that appending two non-empty arrays results in
-     * a new array containing the elements of both, in order.
+     * Tests that getting an element at a specified index
+     * results in that element being returned
      */
     @Test
     public void testGetStandard() {
-        compareToString(a1.append(a2), "abcdefwxyz");
-        compareToString(a2.append(a1), "wxyzabcdef");
+        //DynamicArray<Character> result1 = stringToArray(a1.get(3));
+
+        //compareToString(a1.get(3), "d");
+        //compareToString(a2.get(1), "x");
     }
 
     // ~*~*~*~*~ Add Tests Below ~*~*~*~*~
