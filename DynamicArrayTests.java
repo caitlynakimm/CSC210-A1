@@ -228,6 +228,22 @@ public class DynamicArrayTests {
         a2.get(a2.size() + 1);
     }
     // ~*~*~*~*~ Add Tests Below ~*~*~*~*~
+    /**
+     * Tests that adding an element at a specified index
+     * results in the new element inserted into the current array 
+     */
+    @Test
+    public void testAddStandard() {
+        assertEquals("oabcdef", a1.add(0, 'o'));
+        assertEquals("abocdef", a1.add(2, 'o'));
+        assertEquals("abcdeof", a1.add(5, 'o'));
+
+        assertEquals("owxyz", a2.add(0, 'o'));
+        assertEquals("wxyoz", a2.add(3, 'o'));
+
+        assertEquals("o", s.add(0, 'o'));
+    }
+
     
 }
 
