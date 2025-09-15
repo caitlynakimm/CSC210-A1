@@ -79,9 +79,9 @@ public class DynamicArrayTests {
      */
     @Test
     public void testAppendSingle() {
-    compareToString(a1.append(s),"abcdefs");
-    compareToString(s.append(a1),"sabcdef");
-    compareToString(s.append(s),"ss");
+        compareToString(a1.append(s),"abcdefs");
+        compareToString(s.append(a1),"sabcdef");
+        compareToString(s.append(s),"ss");
     }
 
     /**
@@ -97,37 +97,61 @@ public class DynamicArrayTests {
 
     // ~*~*~*~*~ Add Extract Tests Below ~*~*~*~*~
 
-//    /**
-//     * Tests that ...
-//     */
-//    @Test
-//    public void testExtractStandard() {
-//        // fill in standard cases
-//    }
-//
-//    /**
-//     * Tests that ..
-//     */
-//    @Test
-//    public void testExtractEntire() {
-//        // fill in extracting the entire array
-//    }
-//
-//    /**
-//     * Tests that ..
-//     */
-//    @Test
-//    public void testExtractZero() {
-//        // fill in extracting zero elements
-//    }
-//
-//    /**
-//     * Tests that ..
-//     */
-//    @Test
-//    public void testExtractEmpty() {
-//        // fill in extracting from an empty array
-//    }
+    /**
+     * Tests that extracting part of an array
+     * results in a new array with just the extracted part
+     */
+    @Test
+    public void testExtractStandard() {
+        DynamicArray<Character> result1 = a1.extract(1, 4);
+        compareToString(result1, "bcd");
+        compareSize(result1, "bcd");
+
+        DynamicArray<Character> result2 = a2.extract(0, 2);
+        compareToString(result2, "wx");
+        compareSize(result2, "wx");;
+    }
+
+    /**
+     * Tests that extracting the entire array
+     * results in a new array with all the elements of the previous array
+     */
+    @Test
+    public void testExtractEntire() {
+        DynamicArray<Character> result1 = a1.extract(0, 6);
+        compareToString(result1, "abcdef");
+        compareSize(result1, "abcdef");
+        
+        DynamicArray<Character> result2 = a2.extract(0, 4);
+        compareToString(result2, "wxyz");
+        compareSize(result2, "wxyz");
+    }
+
+    /**
+     * Tests that extracting no elements from an array
+     * results in a new array that is empty
+     */
+    @Test
+    public void testExtractZero() {
+        DynamicArray<Character> result1 = a1.extract(2, 2);
+        compareToString(result1, "");
+        compareSize(result1, "");
+        
+        DynamicArray<Character> result2 = a2.extract(3, 3);
+        compareToString(result2, "");
+        compareSize(result2, "");
+    }
+
+    /**
+     * Tests that extracting from an empty array
+     * results in a new array that is empty
+     */
+    @Test
+    public void testExtractEmpty() {
+        DynamicArray<Character> result = empty.extract(0, 0);
+        compareToString(result, "");
+        compareSize(result, "");
+    }
 
     /**
      * Tests that extract throws the proper exception
@@ -135,18 +159,23 @@ public class DynamicArrayTests {
      */
     @Test(expected = IndexOutOfBoundsException.class)
     public void testExtractBounds() {
-        DynamicArray<Character> extract = a1.extract(-1, 5);
+        DynamicArray<Character> extractOne = a1.extract(-1, 5);
         // More bounds that you can check:
         // low index is negative => throws ArrayIndexOutOfBoundsException
         // high index is greater than array length => throws ArrayIndexOutOfBoundsException
+        DynamicArray<Character> extractTwo = a1.extract(0, 10);
         // low index is greater than array length => throws ArrayIndexOutOfBoundsException
+        DynamicArray<Character> extractThree = a1.extract(6, 3);
         // high index is negative => throws ArrayIndexOutOfBoundsException
+        DynamicArray<Character> extractFour = a2.extract(1, -2);
         // high index is less than low
+        DynamicArray<Character> extractFive = a2.extract(2, 0);
+
     }
 
-    // ~*~*~*~*~ Write More Tests Below ~*~*~*~*~
+    // ~*~*~*~*~ Get Tests Below ~*~*~*~*~
 
-    // write tests for the other methods here
+    // ~*~*~*~*~ Add Tests Below ~*~*~*~*~
 }
 
 

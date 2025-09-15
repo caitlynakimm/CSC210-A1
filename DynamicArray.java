@@ -5,6 +5,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     
     private T[] array;
     private int size; //number of elements stored in array
+    private int capacity; //total allocated memory for array 
 
     /**
      * Constructor allocates space for an array
@@ -15,6 +16,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
         if (length < 0) {
             throw new IllegalArgumentException("Allocated space for array cannot be negative.");
         }
+        this.capacity = length;
         this.array = allocate(length);
         this.size = 0; //no elements initially
     }
@@ -25,7 +27,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
      */
     //@SuppressWarnings("unchecked")
     public DynamicArray(DynamicArray<T> other) {
-        this.array = allocate(other.array.length);
+        this.capacity = other.capacity;
+        this.array = allocate(capacity);
         this.size = other.size;
 
         for (int i = 0; i < size; i++) {
@@ -243,7 +246,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
      */
     public DynamicArray<T> delete(int fromIndex, int toIndex){
 
-        if (fromIndex < 0 || fromIndex > this.size || fromIndex > toIndex) {
+        if (fromIndex < 0 || fromIndex > this.size || toIndex > this.size || fromIndex > toIndex) {
             throw new IndexOutOfBoundsException("Indices chosen are out of bounds. Please enter valid indices.");
         }
 
@@ -268,7 +271,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
      */
     public DynamicArray<T> extract(int fromIndex, int toIndex){
 
-        if (fromIndex < 0 || fromIndex > this.size || fromIndex > toIndex) {
+        if (fromIndex < 0 || fromIndex > this.size || toIndex > this.size || fromIndex > toIndex) {
             throw new IndexOutOfBoundsException("Indices chosen are out of bounds. Please enter valid indices.");
         }
 
