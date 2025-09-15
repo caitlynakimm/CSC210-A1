@@ -1,9 +1,15 @@
+/**
+ * 
+ */
 public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperationsADT<T> {
     
     private T[] array;
     private int size; //number of elements stored in array
 
-    /** Constructor takes in an array */
+    /**
+     * Constructor allocates space for an array
+     * @param length
+     */
     //@SuppressWarnings("unchecked")
     public DynamicArray(int length) {
         if (length < 0) {
@@ -13,7 +19,10 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
         this.size = 0; //no elements initially
     }
 
-    /**Copy constructor that takes a DynamicArray and makes a deep copy of it*/
+    /**
+     * Copy constructor that takes a DynamicArray and makes a deep copy of it
+     * @param other
+     */
     //@SuppressWarnings("unchecked")
     public DynamicArray(DynamicArray<T> other) {
         this.array = allocate(other.array.length);
@@ -64,6 +73,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
     /**
      * Private utility to do array allocation
+     * @param len
+     * @return
      */
     @SuppressWarnings("unchecked")
     private T[] allocate(int len) {
@@ -104,6 +115,11 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
         add(size, value);
     }
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public T remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index chosen is out of bounds. Please enter a valid index.");
@@ -130,6 +146,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     
     /**
      * 
+     * @param other
+     * @return
      */
     public DynamicArray<T> append(DynamicArray<T> other) {
         DynamicArray<T> result = new DynamicArray<>(this.size + other.size);
@@ -149,6 +167,9 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
     /**
      * 
+     * @param index
+     * @param other
+     * @return
      */
     public DynamicArray<T> insert(int index, DynamicArray<T> other) {
         if (index < 0 || index > this.size) {
@@ -177,6 +198,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
     /**
      * 
+     * @param index
+     * @return
      */
     public DynamicArray<T> splitSuffix(int index){
         if (index < 0 || index > this.size) {
@@ -193,17 +216,69 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
     }
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public DynamicArray<T> splitPrefix(int index){
-        DynamicArray<T> result = new DynamicArray<>(this.size - index);
+        if (index < 0 || index > this.size) {
+            throw new IndexOutOfBoundsException("Index chosen is out of bounds. Please enter a valid index.");
+        }
 
+        DynamicArray<T> result = new DynamicArray<>(index);
+
+        for (int i = 0; i < index; i++) {
+            result.add(this.get(i));
+        }
+
+        return result;
     }
 
+    /**
+     * 
+     * @param fromIndex
+     * @param toIndex
+     * @return
+     */
     public DynamicArray<T> delete(int fromIndex, int toIndex){
-        
+
+        if (fromIndex < 0 || fromIndex > this.size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException("Indices chosen are out of bounds. Please enter valid indices.");
+        }
+
+        DynamicArray<T> result = new DynamicArray<>(this.size - (toIndex - fromIndex));
+
+        for (int i = 0; i < fromIndex; i++) {
+            result.add(this.get(i));
+        }
+
+        for (int i = toIndex; i < this.size; i++) {
+            result.add(this.get(i));
+        }
+
+        return result;
     }
 
+    /**
+     * 
+     * @param fromIndex
+     * @param toIndex
+     * @return
+     */
     public DynamicArray<T> extract(int fromIndex, int toIndex){
 
+        if (fromIndex < 0 || fromIndex > this.size || fromIndex > toIndex) {
+            throw new IndexOutOfBoundsException("Indices chosen are out of bounds. Please enter valid indices.");
+        }
+
+        DynamicArray<T> result = new DynamicArray<>(toIndex - fromIndex);
+
+        for (int i = fromIndex; i < toIndex; i++) {
+            result.add(this.get(i));
+        }
+
+        return result;
     }
 }
 
