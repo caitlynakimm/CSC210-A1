@@ -1,5 +1,7 @@
 /**
- * 
+ * Implementation of a dynamic array that can increase or decrease in size
+ * Allows basic array and whole-array operations
+ * @param <T> Type of elements stored in array
  */
 public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperationsADT<T> {
     
@@ -130,18 +132,16 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
         T removedElement = array[index];
 
-        T[] newArray = allocate(size - 1);
+        //T[] newArray = allocate(size - 1);
         
-        for (int i = 0; i < index; i++) {
-            newArray[i] = array[i];
+        //shifts elements to the left
+        for (int i = index; i < size - 1; i++) {
+            array[i] = array[i + 1];
         }
 
-        for (int i = index; i < size; i++) {
-            newArray[i] = array[i+1];
-        }
 
-        this.array = newArray;
-        size--;
+        array[size - 1] = null; //clear last element in array
+        size--; //array has one less element
 
         return removedElement;
     }
