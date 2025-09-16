@@ -10,8 +10,9 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     private int capacity; //total allocated memory for array 
 
     /**
-     * Constructor allocates space for an array
-     * @param length
+     * Constructor makes a new DynamicArray with specified initial capacity
+     * @param length Initial capacity of array
+     * @throws IllegalArgumentException if length is negative
      */
     //@SuppressWarnings("unchecked")
     public DynamicArray(int length) {
@@ -24,8 +25,8 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * Copy constructor that takes a DynamicArray and makes a deep copy of it
-     * @param other
+     * Creates deep copy of another DynamicArray
+     * @param other DynamicArray to copy
      */
     //@SuppressWarnings("unchecked")
     public DynamicArray(DynamicArray<T> other) {
@@ -43,7 +44,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
      * @param index The index of the element to replace
      * @param newElement New element to be stored at specified position
      * @return oldValue Previous value stored at given index of array
-     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
+     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= size)
      */
     public T set(int index, T newElement){
         if (index < 0 || index >= size) {
@@ -58,7 +59,7 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
      * Returns element at specified position in array
      * @param index The index of the returning element
      * @return Element at specified position
-     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
+     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= size)
      */
     public T get(int index){
         if (index < 0 || index >= size) {
@@ -77,9 +78,9 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * Private utility to do array allocation
-     * @param len
-     * @return
+     * Private utility to do array allocation of specified length
+     * @param len Length of array to allocate
+     * @return a new array type T[] with given length
      */
     @SuppressWarnings("unchecked")
     private T[] allocate(int len) {
@@ -87,9 +88,10 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param index
-     * @param value
+     * Inserts specified element at specified index
+     * @param index Index to insert element at
+     * @param value Element to be inserted
+     * @throws IndexOutofBoundsException if index out of range (index < 0 || index > size)
      */
     public void add(int index, T value) {
         if (index < 0 || index > size) {
@@ -113,17 +115,18 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * overloads add method to add element to end of array
-     * @param value
+     * Appends specified element to end of array
+     *  @param value Element to be appended
      */
     public void add(T value) {
         add(size, value);
     }
 
     /**
-     * 
-     * @param index
-     * @return
+     * Removes and returns element at specified index
+     * @param index Index of element to remove
+     * @return removedElement Element previously at specified index
+     * @throws IndexOutofBoundsException if index out of range (index < 0 || index >= size)
      */
     public T remove(int index) {
         if (index < 0 || index >= size) {
@@ -148,9 +151,9 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
 
     
     /**
-     * 
-     * @param other
-     * @return
+     * Appends all elements from another DynamicArray to this array
+     * @param other DynamicArray containing elements to be appended
+     * @return result New DynamicArray with all elements from both arrays
      */
     public DynamicArray<T> append(DynamicArray<T> other) {
         DynamicArray<T> result = new DynamicArray<>(this.size + other.size);
@@ -169,10 +172,11 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param index
-     * @param other
-     * @return
+     * Inserts all elements from another DynamicArray at specified index
+     * @param index Index where the other array is inserted
+     * @param other DynamicArray with elements to be inserted
+     * @return result New DynamicArray with combined elements
+     * @throws IndexOutofBoundsException if index out of range (index < 0 || index > size)
      */
     public DynamicArray<T> insert(int index, DynamicArray<T> other) {
         if (index < 0 || index > this.size) {
@@ -200,9 +204,10 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param index
-     * @return
+     * Creates new array containing elements from specified index to end
+     * @param index Starting index for suffix (included)
+     * @return result New DynamicArray that has the suffix elements
+     * @throws IndexOutofBoundsException if index out of range (index < 0 || index > size)
      */
     public DynamicArray<T> splitSuffix(int index){
         if (index < 0 || index > this.size) {
@@ -220,9 +225,10 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param index
-     * @return
+     * Creates new array containing elements from start to specified index     * @param index Starting index for suffix (included)
+     * @param index Ending index for prefix (not included)
+     * @return result New DynamicArray that has the prefix elements
+     * @throws IndexOutofBoundsException if index out of range (index < 0 || index > size)
      */
     public DynamicArray<T> splitPrefix(int index){
         if (index < 0 || index > this.size) {
@@ -239,10 +245,11 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param fromIndex
-     * @param toIndex
-     * @return
+     * Creates new array with elements in specified range removed
+     * @param fromIndex Start index of range of elements to be removed (included)
+     * @param toIndex End index of range of elements to be removed (not included)
+     * @return result New DynamicArray with range removed
+     * @throws IndexOutofBoundsException if indices are invalid
      */
     public DynamicArray<T> delete(int fromIndex, int toIndex){
 
@@ -264,10 +271,11 @@ public class DynamicArray<T> implements DynamicArrayADT<T>, WholeArrayOperations
     }
 
     /**
-     * 
-     * @param fromIndex
-     * @param toIndex
-     * @return
+     * Creates new array with elements in specified range
+     * @param fromIndex Start index of extracted range (included)
+     * @param toIndex End index of extracted range (not included)
+     * @return result New DynamicArray with extracted elements
+     * @throws IndexOutofBoundsException if indices are invalid
      */
     public DynamicArray<T> extract(int fromIndex, int toIndex){
 
