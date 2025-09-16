@@ -197,14 +197,14 @@ public class DynamicArrayTests {
      */
     @Test
     public void testGetStandard() {
-        assertEquals("a", a1.get(0));
-        assertEquals("d", a1.get(3));
-        assertEquals("f", a1.get(5));
+        assertEquals('a', a1.get(0).charValue());
+        assertEquals('d', a1.get(3).charValue());
+        assertEquals('f', a1.get(5).charValue());
 
-        assertEquals("w", a2.get(0));
-        assertEquals("z", a2.get(3));
+        assertEquals('w', a2.get(0).charValue());
+        assertEquals('z', a2.get(3).charValue());
 
-        assertEquals("s", s.get(0));
+        assertEquals('s', s.get(0).charValue());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -296,8 +296,3 @@ public class DynamicArrayTests {
         a2.add(a2.size() + 1, 'y');
     }
 }
-
-
-
-
-
