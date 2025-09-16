@@ -10,7 +10,7 @@ public interface DynamicArrayADT<T> {
      * Returns element at specified position in array
      * @param index The index of the returning element
      * @return Element at specified position
-     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
+     * @throws IndexOutOfBoundsException if index is out of range
      */
     public T get(int index);
 
@@ -18,7 +18,7 @@ public interface DynamicArrayADT<T> {
      * Replaces element at specified position with user-given element
      * @param index The index of the element to replace
      * @param newElement New element to be stored at specified position
-     * @throws IndexOutOfBoundsException if index is out of range (index < 0 or index >= arraySize())
+     * @throws IndexOutOfBoundsException if index is out of range
      */
     public T set(int index, T newElement);
 
