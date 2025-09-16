@@ -18,39 +18,39 @@ __YES___ 1 pt: Appropriate instance variables defined for `DynamicArray`
 
 __YES___ 1 pt: Group 1 method fully tested: get
 
-_____ 1 pt: Group 1 methods correctly implemented 
+__PART___ 1 pt: Group 1 methods correctly implemented 
 
 __YES___ 1 pt: Group 2 method fully tested: add
 
-_____ 1 pt: Group 2 methods correctly implemented
+__YES___ 1 pt: Group 2 methods correctly implemented
 
 __YES___ 1 pts: Group 3 methods fully tested: append and extract
 
-_____ 1 pts: Group 3 methods correctly implemented
+__YES___ 1 pts: Group 3 methods correctly implemented
 
-_____ 1 pt: Methods call other methods as needed to reduce redundancy
+__YES___ 1 pt: Methods call other methods as needed to reduce redundancy
 
 _____ KUDOS: Group 4 methods implemented
 
 
 ## General Items:
 
-_____ 4 pts: Programs compile without errors or warnings 
+__YES___ 4 pts: Programs compile without errors or warnings 
 
-_____ 2 pts: Executes fully & consistently without crashing (exceptions/freezing)
+__YES___ 2 pts: Executes fully & consistently without crashing (exceptions/freezing)
 
-_____ 2 pt: Complies with style guidelines:
+__YES___ 2 pt: Complies with style guidelines:
 
-      _____ Classes & class members all have Javadoc header comments 
+      ____YES______ Classes & class members all have Javadoc header comments 
 
-      _____ Clear and consistent indentation of bracketed sections 
+      ____YES______ Clear and consistent indentation of bracketed sections 
 
-      _____ Adheres to Java conventions on naming & capitalization 
+      ____YES______ Adheres to Java conventions on naming & capitalization 
 
-      _____ Methods & variables all have clear and accurate names 
+      ____YES______ Methods & variables all have clear and accurate names 
 
-      _____ Methods avoid confusing side effects  
+      ____YES______ Methods avoid confusing side effects  
 
-_____ 1 pt: All required files included with submission (including basic readme info and completed checklist file) 
+__YES___ 1 pt: All required files included with submission (including basic readme info and completed checklist file) 
 
 __YES___ 1 pt: README.md contains collaboration acknowledgment and your reflection on the assignment 
