@@ -10,21 +10,21 @@ your work, please indicate the status of each item
 
 Assignment Points (out of 20):
 
-_____ 1 pt: Interface includes all specified methods
+__YES___ 1 pt: Interface includes all specified methods
 
-_____ 1 pt: Method call signatures correctly implement interface
+__YES___ 1 pt: Method call signatures correctly implement interface
 
-_____ 1 pt: Appropriate instance variables defined for `DynamicArray`
+__YES___ 1 pt: Appropriate instance variables defined for `DynamicArray`
 
-_____ 1 pt: Group 1 method fully tested: get
+__YES___ 1 pt: Group 1 method fully tested: get
 
 _____ 1 pt: Group 1 methods correctly implemented 
 
-_____ 1 pt: Group 2 method fully tested: add
+__YES___ 1 pt: Group 2 method fully tested: add
 
 _____ 1 pt: Group 2 methods correctly implemented
 
-_____ 1 pts: Group 3 methods fully tested: append and extract
+__YES___ 1 pts: Group 3 methods fully tested: append and extract
 
 _____ 1 pts: Group 3 methods correctly implemented
 
@@ -53,4 +53,4 @@ _____ 2 pt: Complies with style guidelines:
 
 _____ 1 pt: All required files included with submission (including basic readme info and completed checklist file) 
 
-_____ 1 pt: README.md contains collaboration acknowledgment and your reflection on the assignment 
+__YES___ 1 pt: README.md contains collaboration acknowledgment and your reflection on the assignment 
